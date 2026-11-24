@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# This script creates multiple users based on an array of usernames.
+#
+# Username array
+usernames=("Loki" "Kullervo" "Temple")
+
+# create the users by looping through the array
+for usernames in "${usernames[@]}"
+do
+    sudo userdel "$usernames"
+    sudo rm -rf "/home/$usernames"
+    sudo useradd -m "$usernames"
+    sudo -u "$usernames" mkdir -p "/home/$usernames/homework" "/home/$usernames/projects"
+done
+
+echo "Successfully created users"
+
+for Loki in "${usernames[@]}"
+do
+    touch "/home/$Loki/homework/homework1.txt"
